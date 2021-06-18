@@ -21,4 +21,4 @@ schema.set('toJSON', {
     }
 });
 
-module.exports = mongoose.model('User', schema);
+module.exports = mongoose.model('Book', schema);
