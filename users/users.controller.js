@@ -10,6 +10,7 @@ router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
+router.get('/books', getBooks)
 
 module.exports = router;
 
@@ -52,5 +53,12 @@ function update(req, res, next) {
 function _delete(req, res, next) {
     userService.delete(req.params.id)
         .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+function getBooks(req, res, next) {
+    
+    userService.getAll()
+        .then(users => res.json(users))
         .catch(err => next(err));
 }
