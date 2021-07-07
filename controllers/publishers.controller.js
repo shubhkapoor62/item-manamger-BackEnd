@@ -3,25 +3,27 @@ const router = express.Router();
 const publisherService = require('../masterData/publishers/publisher.service');
 
 // routes
-router.get('/publisher', getPublishers);
-router.get('/addpublisher', addPublishers);
+router.get('/', getPublishers);
+router.post('/add', addPublishers);
 
 module.exports = router;
 
 function getPublishers(req, res, next) {
     publisherService.getPublishers().then(resp => {
-        resp.json();
+        res.send(resp);
     })
         .catch(err => {
-            err.json();
+            next(err);
         });
 }
 
-function addPublishers() {
-    publisherService.addPublishers(
-
-    ).then(resp => resp.json())
+function addPublishers(req, res, nex) {
+    publisherService.addPublishers(req.body).then(resp => {
+        res.send('Publishers added succeesfully');
+    })
         .catch(error => {
-            error.json();
+            // next(error);
+            console.error(error);
+            res.send('error in adding publishers');
         });
 }

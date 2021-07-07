@@ -3,8 +3,8 @@ const router = express.Router();
 const bookService = require('../masterData/books/book.service');
 
 // routes
-router.get('/books', getBooks);
-router.post('/addBooks', addBooks);
+router.get('/', getBooks);
+router.post('/add', addBooks);
 
 module.exports = router; 
 
