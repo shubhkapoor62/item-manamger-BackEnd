@@ -1,7 +1,7 @@
 ﻿const express = require('express');
 const router = express.Router();
-const userService = require('./user.service');
-const bookService = require('../masterData/book.service');
+const userService = require('../users/user.service');
+const bookService = require('../masterData/books/book.service');
 
 // routes
 router.post('/authenticate', authenticate);
@@ -11,8 +11,6 @@ router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
-router.get('/books', getBooks);
-router.post('/addBooks', addBooks);
 
 module.exports = router;
 
@@ -55,19 +53,5 @@ function update(req, res, next) {
 function _delete(req, res, next) {
     userService.delete(req.params.id)
         .then(() => res.json({}))
-        .catch(err => next(err));
-}
-
-function getBooks(req, res, next) {
-    bookService
-        .getAll()
-        .then(resp => res.json(resp))
-        .catch(err => next(err));
-}
-
-function addBooks(req, res, next) {
-    bookService
-        .addBooks()
-        .then(resp => res.json(resp))
         .catch(err => next(err));
 }

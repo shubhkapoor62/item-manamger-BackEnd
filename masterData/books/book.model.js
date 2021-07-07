@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
     bookName: { type: String, required: true },
-    hindiName: { type: String, required: true },
-    barcode: { type: String, required: true },
-    hsn: { type: String, required: true },
-    tax: {type: Number, default: 2, required: true},
-    publisher:{ type: String, required: true },
-    type: { type: String, required: true },
-    rate: {type: Number, default: 2, required: true}
+    hindiName: { type: String },
+    barcode: { type: String },
+    hsn: { type: String },
+    tax: { type: Number, default: 2 },
+    publisher: { type: String },
+    type: { type: String },
+    rate: { type: Number, default: 2 }
 });
 
 schema.set('toJSON', {
