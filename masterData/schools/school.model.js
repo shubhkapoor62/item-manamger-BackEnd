@@ -3,13 +3,12 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
     name: { type: String, required: true },
-    hindiName: { type: String },
-    barcode: { type: String },
-    hsn: { type: String },
-    tax: { type: Number, default: 2 },
-    publisher: { type: String },
-    type: { type: String },
-    rate: { type: Number, default: 2 }
+    address: { type: String },
+    phoneNo: { type: String },
+    mobileNo: { type: String },
+    gst: { type: String },
+    strength: { type: Number},
+    classinfo: [{ name: String, strength: Number }]
 });
 
 schema.set('toJSON', {
@@ -21,4 +20,4 @@ schema.set('toJSON', {
     }
 });
 
-module.exports = mongoose.model('Book', schema);
+module.exports = mongoose.model('School', schema);

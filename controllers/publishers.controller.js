@@ -17,7 +17,7 @@ function getPublishers(req, res, next) {
         });
 }
 
-function addPublishers(req, res, nex) {
+function addPublishers(req, res, next) {
     publisherService.addPublishers(req.body).then(resp => {
         res.send('Publishers added succeesfully');
     })
