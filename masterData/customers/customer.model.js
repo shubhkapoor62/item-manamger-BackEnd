@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     name: { type: String, required: true },
     address: { address1: String, address2: String, zipcode: String, city: String, country: String },
-    mobileNo : { type: String },
-    gst : { type: String }
+    mobileNo: { type: String },
+    gst: { type: String },
+    phoneNo: { type: String }
 });
 
 schema.set('toJSON', {

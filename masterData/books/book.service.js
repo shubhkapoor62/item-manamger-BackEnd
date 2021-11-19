@@ -8,7 +8,10 @@ const Book = db.Book;
 module.exports = {
     authenticate,
     getBooks,
-    addBooks
+    addBooks,
+    updateBook,
+    deleteBook,
+    importallBooks
 };
 
 async function authenticate({ username, password }) {
@@ -28,9 +31,32 @@ async function getBooks() {
 }
 
 async function addBooks(bookArray) {
-    console.log('in add books')
     bookArray.forEach(element => {
         const book = new Book(element);
-        book.save();
+        book.save(element);
     });
 }
+
+async function updateBook(bookdata) {
+    return await Book.replaceOne({ bookName: { $eq: bookdata.bookName } },
+       bookdata
+    );
+}
+
+async function importallBooks(bookArray) {
+    console.log(bookArray, 'in importallBooks');
+    Book.remove({});
+    Book.insertMany(bookArray);
+}
+
+async function deleteBook(bookName) {
+    console.log(bookName, 'hello');
+    try {
+        return await Book.deleteOne({ bookName: bookName });
+    } catch (e) {
+        throw e;
+    }
+}
+
+
+

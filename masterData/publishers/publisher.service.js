@@ -8,7 +8,10 @@ const Publisher = db.Publisher;
 module.exports = {
     authenticate,
     getPublishers,
-    addPublishers
+    addPublishers,
+    updatePublisher,
+    deletePublisher,
+    importallPublisher
 };
 
 async function authenticate({ username, password }) {
@@ -31,4 +34,24 @@ async function addPublishers(PublisherList) {
         const publisher = new Publisher(element);
         publisher.save();
     });
+}
+
+async function updatePublisher(publisherData) {
+    return await Publisher.replaceOne({ name: { $eq: publisherData.name } },
+        publisherData
+    );
+}
+
+async function importallPublisher(bookArray) {
+    console.log(bookArray, 'in importallBooks');
+    Publisher.remove({});
+    Publisher.insertMany(bookArray);
+}
+
+async function deletePublisher(publisherData) {
+    try {
+        return await Publisher.deleteOne({ name: publisherData });
+    } catch (e) {
+        throw e;
+    }
 }

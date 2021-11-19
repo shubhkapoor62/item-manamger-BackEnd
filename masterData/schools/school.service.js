@@ -8,7 +8,10 @@ const School = db.School;
 module.exports = {
     authenticate,
     getSchools,
-    addSchool
+    addSchool,
+    updateSchool,
+    deleteSchool,
+    importallSchools
 };
 
 async function authenticate({ username, password }) {
@@ -33,4 +36,25 @@ async function addSchool(schoolArray) {
         const school = new School(element);
         school.save();
     });
+}
+
+async function updateSchool(schooldata) {
+    return await School.replaceOne({ name: { $eq: schooldata.name } },
+        schooldata
+    );
+}
+
+async function importallSchools(schoolArray) {
+    console.log(schoolArray, 'in importallSchool');
+    School.remove({});
+    School.insertMany(schoolArray);
+}
+
+async function deleteSchool(schoolName) {
+    console.log(schoolName, 'hello');
+    try {
+        return await School.deleteOne({ name: schoolName });
+    } catch (e) {
+        throw e;
+    }
 }

@@ -8,7 +8,9 @@ const SchoolClass = db.SchoolClass;
 module.exports = {
     authenticate,
     getClasses,
-    addClasses
+    getClassesForSchool,
+    addClasses,
+    deleteClasses
 };
 
 async function authenticate({ username, password }) {
@@ -27,10 +29,24 @@ async function getClasses() {
     return await SchoolClass.find();
 }
 
+async function getClassesForSchool(schoolName) {
+    console.log(schoolName, 'dshfhsdfvbhj');
+    return await SchoolClass.find({"schoolName": schoolName});
+}
+
 async function addClasses(classList) {
-    console.log('in add books')
+    console.log('in add class')
     classList.forEach(element => {
         const schoolClass = new SchoolClass(element);
         schoolClass.save();
     });
+}
+
+async function deleteClasses(schoolName, className) {
+    console.log(schoolName, 'hello');
+    try {
+        return await School.deleteOne({ schoolName: schoolName, className: className});
+    } catch (e) {
+        throw e;
+    }
 }

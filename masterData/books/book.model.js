@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    name: { type: String, required: true },
+    bookName: { type: String, required: true },
     hindiName: { type: String },
     barcode: { type: String },
     hsn: { type: String },
     tax: { type: Number, default: 2 },
     publisher: { type: String },
     type: { type: String },
-    rate: { type: Number, default: 2 }
+    rate: { type: Number }
 });
 
 schema.set('toJSON', {
