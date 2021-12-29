@@ -8,7 +8,7 @@ const schema = new Schema({
     mobileNo: { type: String },
     gst: { type: String },
     strength: { type: Number},
-    classinfo: [{ name: String, strength: Number }]
+    classinfo: [{ className: String, strength: Number }]
 });
 
 schema.set('toJSON', {

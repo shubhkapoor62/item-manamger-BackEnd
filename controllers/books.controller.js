@@ -29,8 +29,8 @@ function addBooks(req, res, next) {
             res.json(respObj);
         })
         .catch(err => {
-            throw 'in add book error response'
             console.log('in add book error response', err);
+            throw 'in add book error response'
         });
 }
 

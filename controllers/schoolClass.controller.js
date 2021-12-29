@@ -5,6 +5,7 @@ const schoolClassService = require('../masterData/classes/schoolClass.service');
 
 // routes
 router.get('/', getClasses);
+router.post('/global/add', addMasterClass);
 router.post('/add', addClasses);
 router.post('/delete', deleteClasses);
 
@@ -34,7 +35,21 @@ function addClasses(req, res, next) {
         })
         .catch(err => {
             next(err)
-            console.log('Error in Classes addition');
+            console.log('Error in Classes addition', err);
+        });
+}
+
+function addMasterClass(req, res, next) {
+    console.log('in master class add');
+    schoolClassService
+        .addMasterClass(req.body)
+        .then(resp => {
+            console.log('Classes added');
+            res.json(resp)
+        })
+        .catch(err => {
+            next(err)
+            console.log('Error in Classes addition', err);
         });
 }
 

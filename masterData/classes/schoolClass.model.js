@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    schoolName: {type: String, required: true },
-    className: { type: String, required: true },
+    className: { type: String, required: true, unique: true },
     strength: { type: Number }
 });
 
