@@ -4,14 +4,16 @@ const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
 const Book = db.Book;
+const Requirement = db.Requirement;
+
 
 module.exports = {
     authenticate,
-    getBooks,
-    addBooks,
-    updateBook,
-    deleteBook,
-    importallBooks
+    getRequirement,
+    addRequirement,
+    updateExtras,
+    updateBooksTransact,
+    resetRequirement
 };
 
 async function authenticate({ username, password }) {
@@ -26,36 +28,36 @@ async function authenticate({ username, password }) {
     }
 }
 
-async function getBooks() {
-    return await Book.find();
+async function getRequirement() {
+    return await Requirement.find();
 }
 
-async function addBooks(bookArray) {
-    bookArray.forEach(element => {
-        const book = new Book(element);
-        book.save(element);
+async function addRequirement(requirementList) {
+    requirementList.forEach(element => {
+        const requireItem = new Requirement(element);
+        requireItem.save(element);
     });
 }
 
-async function updateBook(bookdata) {
-    return await Book.replaceOne({ bookName: { $eq: bookdata.bookName } },
-       bookdata
-    );
+async function updateExtras(bookdata) {
+    // return await Book.replaceOne({ bookName: { $eq: bookdata.bookName } },
+    //    bookdata
+    // );
 }
 
-async function importallBooks(bookArray) {
-    console.log(bookArray, 'in importallBooks');
-    Book.remove({});
-    Book.insertMany(bookArray);
+async function updateBooksTransact(bookdata) {
+    // return await Book.replaceOne({ bookName: { $eq: bookdata.bookName } },
+    //    bookdata
+    // );
 }
 
-async function deleteBook(bookName) {
-    console.log(bookName, 'hello');
-    try {
-        return await Book.deleteOne({ bookName: bookName });
-    } catch (e) {
-        throw e;
-    }
+async function resetRequirement(bookName) {
+    // console.log(bookName, 'hello');
+    // try {
+    //     return await Book.deleteOne({ bookName: bookName });
+    // } catch (e) {
+    //     throw e;
+    // }
 }
 
 

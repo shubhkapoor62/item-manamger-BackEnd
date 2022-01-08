@@ -10,5 +10,6 @@ module.exports = {
     Publisher: require('../masterData/publishers/publisher.model'),
     Customer: require('../masterData/customers/customer.model'),
     SchoolClass: require('../masterData/classes/schoolClass.model'),
-    School: require('../masterData/schools/school.model')
+    School: require('../masterData/schools/school.model'),
+    Requirement: require('../masterData/requirement/requirement.model')
 };
