@@ -20,6 +20,7 @@ app.use(jwt());
  app.use('/customers', require('./controllers/customers.controller'));
  app.use('/classes', require('./controllers/schoolClass.controller'));
  app.use('/schools', require('./controllers/school.controller'));
+ app.use('/extraItem', require('./controllers/extraItem.controller'));
 
 // global error handler
 app.use(errorHandler);

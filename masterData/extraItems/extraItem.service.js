@@ -35,10 +35,10 @@ async function addExtras(bookArray) {
     });
 }
 
-async function deleteExtra(bookdata) `98764\{
-    console.log(bookName, 'hello');
+async function deleteExtra(itemName) {
+    console.log(itemName, 'hello');
     try {
-        return await ExtraItems.deleteOne({ bookName: bookName });
+        return await ExtraItems.deleteOne({ itemName: itemName });
     } catch (e) {
         throw e;
     }
