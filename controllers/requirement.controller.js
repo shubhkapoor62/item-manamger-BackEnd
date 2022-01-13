@@ -1,44 +1,45 @@
 ﻿const express = require('express');
 const router = express.Router();
-const bookService = require('../masterData/books/book.service');
+const requirementService = require('../masterData//requirement/requirement.service');
 
 // routes
 router.get('/', getRequirement);
 router.post('/add', addRequirement);
-router.put('/updateextra', updateExtras);
-router.put('/updatebooktran', updateBooksTransact);
-router.delete('/delete', deleteBook);
+router.put('/update', updateRequirement);
+router.delete('/delete', deleteRequirement);
 
 module.exports = router;
 
-function getBooks(req, res, next) {
-    bookService
-        .getBooks()
+function getRequirement(req, res, next) {
+    let schoolId = req.query.schoolId;
+    let classId = req.query.classId;
+    requirementService
+        .getRequirement(schoolId, classId)
         .then(resp => res.json(resp))
         .catch(err => next(err));
 }
 
-function addBooks(req, res, next) {
-    bookService
-        .addBooks(req.body)
+function addRequirement(req, res, next) {
+    requirementService
+        .addRequirement(req.body)
         .then(resp => {
-            console.log('in add book then response', resp + '@#$#$#$#$#');
+            console.log('in add requirement then response', resp + '@#$#$#$#$#');
             respObj = {
-                "message": 'Books added'
+                "message": 'Requirement added'
             };
             res.json(respObj);
         })
         .catch(err => {
-            console.log('in add book error response', err);
-            throw 'in add book error response'
+            console.log('in add requirement error response', err);
+            throw 'in add requirement error response'
         });
 }
 
-function updateBook(req, res, next) {
-    bookService
-        .updateBook(req.body)
+function updateRequirement(req, res, next) {
+    requirementService
+        .updateRequirement(req.body)
         .then(resp => {
-            console.log('in update book then response', resp + '@#$#$#$#$#');
+            console.log('in update requirement then response', resp + '@#$#$#$#$#');
             respObj = {
                 "message": resp
             };
@@ -46,24 +47,12 @@ function updateBook(req, res, next) {
         });
 }
 
-function importBooks(req, res, next) {
-    bookService
-        .importallBooks(req.body)
-        .then(resp => {
-            console.log('in import books', resp);
-            respObj = {
-                "allbooks": resp
-            };
-            res.json(resp);
-        })
-}
-
-function deleteBook(req, res, next) {
+function deleteRequirement(req, res, next) {
     let bookName = req.query.bookName;
-    bookService
-        .deleteBook(bookName)
+    requirementService
+        .deleteRequirement(bookName)
         .then(resp => {
-            console.log('in delete Book', resp);
+            console.log('in delete requirement', resp);
             respObj = {
                 "message": resp
             };

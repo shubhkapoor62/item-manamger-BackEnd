@@ -8,6 +8,7 @@ const Book = db.Book;
 module.exports = {
     authenticate,
     getBooks,
+    getBookbyPublisher,
     addBooks,
     updateBook,
     deleteBook,
@@ -28,6 +29,12 @@ async function authenticate({ username, password }) {
 
 async function getBooks() {
     return await Book.find();
+    
+}
+
+async function getBookbyPublisher(publisher, bookName) {
+    // console.log();
+    return await Book.find({'bookName': bookName, 'publisher': publisher});
 }
 
 async function addBooks(bookArray) {

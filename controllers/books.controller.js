@@ -4,6 +4,7 @@ const bookService = require('../masterData/books/book.service');
 
 // routes
 router.get('/', getBooks);
+router.get('/getbyPublisher', getBookbyPublisher);
 router.post('/add', addBooks);
 router.post('/import', importBooks);
 router.put('/update', updateBook);
@@ -14,6 +15,15 @@ module.exports = router;
 function getBooks(req, res, next) {
     bookService
         .getBooks()
+        .then(resp => res.json(resp))
+        .catch(err => next(err));
+}
+
+function getBookbyPublisher(req, res, next) {
+    let publisher = req.query.publisher;
+    let bookName = req.query.bookName;
+    bookService
+        .getBookbyPublisher(publisher, bookName)
         .then(resp => res.json(resp))
         .catch(err => next(err));
 }

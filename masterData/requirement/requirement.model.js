@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
     schoolName: { type: String, required: true },
+    schoolId: { type: mongoose.ObjectId, required: true, unique: true },
     className: { type: String, required: true },
-    books:  [{'bookId': ObjectId, 'rate': Number, 'quantity': Number, 'less': Number, 'amount': Number}],
-    extras: [{'extraId': ObjectId, 'rate': Number, 'quantity': Number, 'less': Number, 'amount': Number}],
+    classId: { type: mongoose.ObjectId, required: true, unique: true },
+    books: [{ 'bookId': mongoose.ObjectId, 'bookName': String, 'publisher': String, 'rate': Number, 'quantity': Number, 'less': Number, 'amount': Number }],
+    extras: [{ 'extraId': mongoose.ObjectId, 'itemName': String,  'rate': Number, 'quantity': Number, 'less': Number, 'amount': Number }],
     totalPriceBooks: Number,
     totalPriceExtra: Number,
     totalPrice: Number

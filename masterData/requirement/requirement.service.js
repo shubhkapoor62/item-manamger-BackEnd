@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
-const Book = db.Book;
 const Requirement = db.Requirement;
 
 
@@ -28,8 +27,8 @@ async function authenticate({ username, password }) {
     }
 }
 
-async function getRequirement() {
-    return await Requirement.find();
+async function getRequirement(schoolId, classId) {
+    return await Requirement.find({schoolId: schoolId, classId: classId});
 }
 
 async function addRequirement(requirementList) {
