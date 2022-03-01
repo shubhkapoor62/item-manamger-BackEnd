@@ -25,7 +25,7 @@ function addRequirement(req, res, next) {
         .then(resp => {
             console.log('in add requirement then response', resp + '@#$#$#$#$#');
             respObj = {
-                "message": 'Requirement added'
+                "message": `Requirement added ${resp}`
             };
             res.json(respObj);
         })

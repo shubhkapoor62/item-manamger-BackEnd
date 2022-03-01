@@ -59,16 +59,17 @@ async function addClasses(classList) {
 async function addMasterClass(classList) {
     console.log('in add master class', classList)
     try {
-        await SchoolClass.create({className: classList.name, strength: 0});
+        await SchoolClass.create({ className: classList.name, strength: 0 });
     } catch (e) {
         throw e
     }
 }
 
-async function deleteClasses(schoolName, className) {
-    console.log(schoolName, 'hello');
+async function deleteClasses(className) {
+    console.log(className, 'hello');
     try {
-        return await School.deleteOne({ schoolName: schoolName, className: className });
+        // return await School.deleteOne({ schoolName: schoolName, className: className });
+        return await SchoolClass.deleteOne({ className: className });
     } catch (e) {
         throw e;
     }

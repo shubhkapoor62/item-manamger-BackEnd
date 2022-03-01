@@ -2,6 +2,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
+var ObjectId = require('mongodb').ObjectId
 const User = db.User;
 const Requirement = db.Requirement;
 
@@ -28,14 +29,14 @@ async function authenticate({ username, password }) {
 }
 
 async function getRequirement(schoolId, classId) {
-    return await Requirement.find({schoolId: schoolId, classId: classId});
+    return await Requirement.find({ schoolId: schoolId, classId: classId });
 }
 
-async function addRequirement(requirementList) {
-    requirementList.forEach(element => {
-        const requireItem = new Requirement(element);
-        requireItem.save(element);
-    });
+async function addRequirement(requirementObjList) {
+    let requirementObj = requirementObjList[0];
+    return Requirement.replaceOne(
+        { 'schoolId': ObjectId(requirementObj.schoolId), 'classId': ObjectId(requirementObj.classId) }, 
+        requirementObj, { upsert: true });
 }
 
 async function updateExtras(bookdata) {

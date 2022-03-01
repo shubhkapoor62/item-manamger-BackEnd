@@ -22,6 +22,7 @@ app.use(jwt());
  app.use('/schools', require('./controllers/school.controller'));
  app.use('/extraItem', require('./controllers/extraItem.controller'));
  app.use('/requirement', require('./controllers/requirement.controller'));
+ app.use('/deliveryMemo', require('./controllers/memo.controller'));
 
 // global error handler
 app.use(errorHandler);

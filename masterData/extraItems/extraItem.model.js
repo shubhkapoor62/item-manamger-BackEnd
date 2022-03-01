@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
     itemName: { type: String, required: true },
-    price: { type: String, required: true }
+    rate: { type: Number, required: true }
 });
 
 schema.set('toJSON', {

@@ -12,5 +12,6 @@ module.exports = {
     SchoolClass: require('../masterData/classes/schoolClass.model'),
     School: require('../masterData/schools/school.model'),
     Requirement: require('../masterData/requirement/requirement.model'),
-    ExtraItems: require('../masterData/extraItems/extraItem.model')
+    ExtraItems: require('../masterData/extraItems/extraItem.model'),
+    DeliveryMemo: require('../masterData/deliverymemo/delivery.model')
 };

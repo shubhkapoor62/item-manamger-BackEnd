@@ -7,23 +7,22 @@ const schoolClassService = require('../masterData/classes/schoolClass.service');
 router.get('/', getClasses);
 router.post('/global/add', addMasterClass);
 router.post('/add', addClasses);
-router.post('/delete', deleteClasses);
+router.delete('/delete', deleteClasses);
 
-module.exports = router; 
+module.exports = router;
 
 function getClasses(req, res, next) {
-    if(req.query.field) {
+    if (req.query.field) {
         schoolClassService
-        .getClassesForSchool(req.query.field)
-        .then(resp => res.json(resp))
-        .catch(err => next(err));
+            .getClassesForSchool(req.query.field)
+            .then(resp => res.json(resp))
+            .catch(err => next(err));
     } else {
         schoolClassService
-        .getClasses()
-        .then(resp => res.json(resp))
-        .catch(err => next(err));
+            .getClasses()
+            .then(resp => res.json(resp))
+            .catch(err => next(err));
     }
-   
 }
 
 function addClasses(req, res, next) {
@@ -54,10 +53,9 @@ function addMasterClass(req, res, next) {
 }
 
 function deleteClasses(req, res, next) {
-    let schoolName = req.query.schoolName;
     let className = req.query.className;
     schoolClassService
-        .deleteClasses(schoolName, className)
+        .deleteClasses(className)
         .then(resp => {
             console.log('in delete Class', resp);
             respObj = {
@@ -65,5 +63,5 @@ function deleteClasses(req, res, next) {
             };
             res.json(respObj);
         })
-        .catch(err => console.log(err))  ;
+        .catch(err => console.log(err));
 }
