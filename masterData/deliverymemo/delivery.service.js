@@ -39,7 +39,7 @@ async function getDeliveryMemoById(memoId) {
 async function createDeliveryMemo(memoList) {
     let memoDataObj = memoList;
     const deliverymemo = new DeliveryMemo(memoDataObj);
-    DeliveryMemo.save(deliverymemo);
+    deliverymemo.save();
 }
 
 async function updateDeliveryMemo(memoData) {

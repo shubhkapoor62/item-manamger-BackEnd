@@ -32,7 +32,8 @@ function createDeliveryMemo(req, res, next) {
         .then(resp => {
             console.log('in add book then response', resp + '@#$#$#$#$#');
             respObj = {
-                "message": 'Books added'
+                "message": 'Books added',
+                "bookObj": req.body
             };
             res.json(respObj);
         })
