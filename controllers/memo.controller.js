@@ -20,6 +20,7 @@ function getDeliveryMemo(req, res, next) {
 
 function getDeliveryMemoById(req, res, next) {
     let memoId = req.query.memoId;
+    console.log(memoId);
     deliveryMemoService
         .getDeliveryMemoById(memoId)
         .then(resp => res.json(resp))
@@ -30,16 +31,16 @@ function createDeliveryMemo(req, res, next) {
     deliveryMemoService
         .createDeliveryMemo(req.body)
         .then(resp => {
-            console.log('in add book then response', resp + '@#$#$#$#$#');
+            console.log('in create delivery memo then response', resp + '@#$#$#$#$#');
             respObj = {
-                "message": 'Books added',
+                "message": 'Delivery Memo added',
                 "bookObj": req.body
             };
             res.json(respObj);
         })
         .catch(err => {
-            console.log('in add book error response', err);
-            throw 'in add book error response'
+            console.log('in create delivery error response', err);
+            throw 'in create delivery memo error response'
         });
 }
 
